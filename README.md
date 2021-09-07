@@ -1,5 +1,5 @@
-# ssforpanel1
-ssforpanel tar
+# personal use of sspanel backend
+install with the following shell command
 ```shell
 yum -y groupinstall "Development Tools"
 wget https://github.com/jedisct1/libsodium/releases/download/1.0.16/libsodium-1.0.16.tar.gz
