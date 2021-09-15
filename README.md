@@ -22,7 +22,7 @@ cp apiconfig.py userapiconfig.py
 cp config.json user-config.json
 systemctl stop firewalld.service
 ```
-3. configure user API configuration
+3. configure web backend API configuration
 
 ```shell
 vim userapiconfig.py
