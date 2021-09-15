@@ -1,21 +1,39 @@
 # personal use of sspanel backend
 install with the following shell command
+
+1. install libsodium to support high-level encrypt algorithm
+
 ```shell
-yum -y groupinstall "Development Tools"
 wget https://github.com/jedisct1/libsodium/releases/download/1.0.16/libsodium-1.0.16.tar.gz
 tar xf libsodium-1.0.16.tar.gz && cd libsodium-1.0.16
 ./configure && make -j2 && make install
 echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 ldconfig
 ```
+2. configure other environments
+
 ```shell
 cd /root
-yum -y install python-setuptools
-easy_install pip
+curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
 cd shadowsocks
 pip install -r requirements.txt
 cp apiconfig.py userapiconfig.py
 cp config.json user-config.json
 systemctl stop firewalld.service
 ```
-用户配置文件为`userapiconfig.py`
+3. configure user API configuration
+
+```shell
+vim userapiconfig.py
+```
+
+4. test/start
+
+```shell
+python server.py
+./run.sh
+```
+
+
+
