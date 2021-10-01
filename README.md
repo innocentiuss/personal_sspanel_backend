@@ -14,9 +14,9 @@ ldconfig
 
 ```shell
 cd /root
-curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+curl -sSL https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
 python get-pip.py
-cd shadowsocks
+cd personal_sspanel_backend/shadowsocks
 pip install -r requirements.txt
 cp apiconfig.py userapiconfig.py
 cp config.json user-config.json
