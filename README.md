@@ -16,6 +16,7 @@ ldconfig
 cd /root
 curl -sSL https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
 python get-pip.py
+git clone https://github.com/innocentiuss/personal_sspanel_backend.git
 cd personal_sspanel_backend/shadowsocks
 pip install -r requirements.txt
 cp apiconfig.py userapiconfig.py
