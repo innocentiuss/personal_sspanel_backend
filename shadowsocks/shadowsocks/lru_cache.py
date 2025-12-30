@@ -21,6 +21,12 @@ from __future__ import absolute_import, division, print_function, \
 import collections
 import logging
 import time
+if hasattr(collections, 'MutableMapping'):
+    # Python 3.3-3.9
+    MutableMapping = collections.MutableMapping
+else:
+    # Python 3.10+
+    from collections.abc import MutableMapping
 
 if __name__ == '__main__':
     import os
@@ -48,7 +54,7 @@ except:
 SWEEP_MAX_ITEMS = 1024
 
 
-class LRUCache(collections.MutableMapping):
+class LRUCache(MutableMapping):
     """This class is not thread safe"""
 
     def __init__(self, timeout=60, close_callback=None, *args, **kwargs):
