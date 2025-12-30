@@ -50,6 +50,19 @@ def load_openssl(crypto_path=None):
     if libcrypto is None:
         raise Exception('libcrypto(OpenSSL) not found with path %s' % path)
 
+    # OpenSSL 3.0+ 需要显式加载 Legacy Provider 以支持 RC4等依赖算法
+    try:
+        libcrypto.OSSL_PROVIDER_load.restype = c_void_p
+        libcrypto.OSSL_PROVIDER_load.argtypes = (c_void_p, c_char_p)
+
+        # 加载 legacy provider
+        libcrypto.OSSL_PROVIDER_load(None, b"legacy")
+        # 同时也必须显式加载 default provider，否则标准算法可能丢失
+        libcrypto.OSSL_PROVIDER_load(None, b"default")
+    except AttributeError:
+        # 如果是旧版 OpenSSL (1.1.x)，没有这个函数，直接跳过
+        pass
+
     libcrypto.EVP_get_cipherbyname.restype = c_void_p
     libcrypto.EVP_CIPHER_CTX_new.restype = c_void_p
 
