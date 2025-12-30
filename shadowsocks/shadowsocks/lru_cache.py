@@ -18,15 +18,12 @@
 from __future__ import absolute_import, division, print_function, \
     with_statement
 
-import collections
 import logging
 import time
-if hasattr(collections, 'MutableMapping'):
-    # Python 3.3-3.9
-    MutableMapping = collections.MutableMapping
-else:
-    # Python 3.10+
+try:
     from collections.abc import MutableMapping
+except ImportError:
+    from collections import MutableMapping
 
 if __name__ == '__main__':
     import os
